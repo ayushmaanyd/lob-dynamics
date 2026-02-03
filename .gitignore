@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# C++ build artifacts
+engine/record_lob
+engine/*.o
+engine/order_processing_times.csv
+
+# Generated data & results (keep the dirs, ignore contents)
+data/*.csv
+results/*
+!results/.gitkeep
+
+# OS / editor
+.DS_Store
