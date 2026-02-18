@@ -1,0 +1,12 @@
+name: twap_buy
+type: twap
+side: buy
+qty: 500          # parent order size (shares)
+bar_sec: 60       # slice interval; ~33 bars over the 2000s dataset
+min_clip: 1
+cost:
+  tick_size: 1          # engine prices are integer ticks
+  lot_size: 1           # engine shares are integer
+  taker_bps: 2.0
+  maker_bps: 0.0
+  fixed_latency_ms: 50

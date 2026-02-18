@@ -1,0 +1,14 @@
+name: pov_buy
+type: pov
+side: buy
+qty: 500          # parent order size (shares)
+target_pov: 0.1   # participate at 10% of each bar's traded volume
+bar_sec: 60
+min_clip: 1
+cooldown_ms: 0
+cost:
+  tick_size: 1
+  lot_size: 1
+  taker_bps: 2.0
+  maker_bps: 0.0
+  fixed_latency_ms: 50

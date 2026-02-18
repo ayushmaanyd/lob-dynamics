@@ -1,0 +1,12 @@
+name: vwap_buy
+type: vwap
+side: buy
+qty: 500          # parent order size (shares); sliced by traded-volume profile
+bar_sec: 60
+min_clip: 1
+cost:
+  tick_size: 1
+  lot_size: 1
+  taker_bps: 2.0
+  maker_bps: 0.0
+  fixed_latency_ms: 50
