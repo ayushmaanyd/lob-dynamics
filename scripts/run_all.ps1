@@ -7,13 +7,15 @@
 # Prereqs: WSL Ubuntu with g++, and the Windows venv at .\.venv (see README).
 
 $ErrorActionPreference = "Stop"
-$root = "z:\everything\projects\lob_dynamics"
+$root = Split-Path -Parent $PSScriptRoot           # repo root (scripts/..)
 $py   = "$root\.venv\Scripts\python.exe"
 $env:PYTHONUTF8 = 1
 $env:PYTHONPATH = "$root\analytics"
 
 Write-Host "`n=== [1/3] Build engine + generate market data (WSL g++) ===" -ForegroundColor Cyan
-wsl bash /mnt/z/everything/projects/lob_dynamics/scripts/build_record.sh
+$buildScriptWin = (Join-Path $PSScriptRoot 'build_record.sh') -replace '\\','/'
+$buildScriptWsl = wsl wslpath -u "$buildScriptWin"
+wsl bash "$buildScriptWsl"
 if ($LASTEXITCODE -ne 0) { throw "engine build/record failed" }
 
 Write-Host "`n=== [2/3] Microstructure analytics ===" -ForegroundColor Cyan

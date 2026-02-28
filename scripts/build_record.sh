@@ -2,7 +2,8 @@
 # Compile the C++ matching-engine recorder (WSL g++, no CMake) and generate the
 # market-data CSVs the analytics layer consumes.
 set -e
-ROOT=/mnt/z/everything/projects/lob_dynamics
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$ROOT/engine"
 
 echo "[build] compiling recorder..."
@@ -11,6 +12,7 @@ g++ -std=c++20 -O2 -o record_lob \
 echo "[build] OK -> engine/record_lob"
 
 echo "[run] generating market data (seed=42, n=20000)..."
+mkdir -p "$ROOT/data"
 ./record_lob \
     --initial data/initial_orders.txt \
     --n 20000 --seed 42 \
